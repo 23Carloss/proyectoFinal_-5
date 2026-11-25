@@ -11,5 +11,6 @@ data class OutfitItem(
     val dotColor: Color = Color(0xFFC87A4B),
     val isFavorite: Boolean = false,
     val isMine: Boolean = true,
-    val author: String = "Luis Pérez"
+    val author: String = "Luis Pérez",
+    val purchaseLink: String? = null
 )

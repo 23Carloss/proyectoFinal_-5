@@ -88,8 +88,9 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(22.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFF3E2A1E)),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    border = BorderStroke(1.5.dp, LightBrownBorder),
+                    colors = CardDefaults.cardColors(containerColor = FieldBackground),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -106,7 +107,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                 fontFamily = PlusJakartaSansFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 11.sp,
-                                color = Color(0xFFC87A4B)
+                                color = MediumBrown
                             )
 
                             Box(
@@ -124,13 +125,13 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                 .fillMaxWidth()
                                 .height(190.dp)
                                 .clip(RoundedCornerShape(14.dp))
-                                .background(Color(0xFF2B1D15)),
+                                .background(BackgroundCream),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.AutoAwesome,
                                 contentDescription = null,
-                                tint = Color.White.copy(alpha = 0.2f),
+                                tint = IconColor.copy(alpha = 0.4f),
                                 modifier = Modifier.size(72.dp)
                             )
                         }
@@ -148,7 +149,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                     fontFamily = PlusJakartaSansFontFamily,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp,
-                                    color = Color.White
+                                    color = DarkBrown
                                 )
 
                                 Spacer(modifier = Modifier.height(2.dp))
@@ -158,7 +159,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                     fontFamily = PlusJakartaSansFontFamily,
                                     fontWeight = FontWeight.Medium,
                                     fontSize = 13.sp,
-                                    color = Color.White.copy(alpha = 0.7f)
+                                    color = MediumBrown
                                 )
                             }
 
@@ -168,7 +169,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                 Icon(
                                     imageVector = if (isFavorite) Icons.Default.Star else Icons.Outlined.StarOutline,
                                     contentDescription = "Favorito",
-                                    tint = if (isFavorite) Color(0xFFF1C40F) else Color(0xFFC9936B),
+                                    tint = if (isFavorite) Color(0xFFF1C40F) else MediumBrown,
                                     modifier = Modifier.size(28.dp)
                                 )
                             }
@@ -182,14 +183,15 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                             outfit.tags.forEach { tag ->
                                 Surface(
                                     shape = RoundedCornerShape(10.dp),
-                                    color = Color(0xFF503828)
+                                    color = BackgroundCream,
+                                    border = BorderStroke(1.dp, LightBrownBorder.copy(alpha = 0.6f))
                                 ) {
                                     Text(
                                         text = tag,
                                         fontFamily = PlusJakartaSansFontFamily,
                                         fontWeight = FontWeight.Medium,
                                         fontSize = 11.sp,
-                                        color = Color.White.copy(alpha = 0.9f),
+                                        color = DarkBrown,
                                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                                     )
                                 }
@@ -228,95 +230,95 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(
-                    text = "Información del Outfit",
-                    fontFamily = PlusJakartaSansFontFamily,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = DarkBrown
-                )
+                if (outfit.isMine) {
+                    Text(
+                        text = "Información del Outfit",
+                        fontFamily = PlusJakartaSansFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = DarkBrown
+                    )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
-                Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp),
-                    color = FieldBackground,
-                    border = BorderStroke(1.5.dp, LightBrownBorder)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(14.dp),
+                        color = FieldBackground,
+                        border = BorderStroke(1.5.dp, LightBrownBorder)
                     ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
-                            Text(
-                                text = "Categoría:",
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Medium,
-                                fontSize = 14.sp,
-                                color = DarkBrown
-                            )
-                            Text(
-                                text = outfit.category,
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                color = Color(0xFF3E2A1E)
-                            )
-                        }
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "Categoría:",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                                Text(
+                                    text = outfit.category,
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                            }
 
-                        HorizontalDivider(color = LightBrownBorder.copy(alpha = 0.5f))
+                            HorizontalDivider(color = LightBrownBorder.copy(alpha = 0.5f))
 
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "Total de prendas:",
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Medium,
-                                fontSize = 14.sp,
-                                color = DarkBrown
-                            )
-                            Text(
-                                text = outfit.itemsCountText,
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                color = Color(0xFF3E2A1E)
-                            )
-                        }
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "Total de prendas:",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                                Text(
+                                    text = outfit.itemsCountText,
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                            }
 
-                        HorizontalDivider(color = LightBrownBorder.copy(alpha = 0.5f))
+                            HorizontalDivider(color = LightBrownBorder.copy(alpha = 0.5f))
 
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Text(
-                                text = "Creado por:",
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Medium,
-                                fontSize = 14.sp,
-                                color = DarkBrown
-                            )
-                            Text(
-                                text = if (outfit.isMine) "Tú" else outfit.author,
-                                fontFamily = PlusJakartaSansFontFamily,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                                color = Color(0xFF3E2A1E)
-                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "Creado por:",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Medium,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                                Text(
+                                    text = "Tú",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                            }
                         }
                     }
-                }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
-                if (outfit.isMine) {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -334,7 +336,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                             Icon(
                                 imageVector = Icons.Outlined.Edit,
                                 contentDescription = "Editar Outfit",
-                                tint = Color(0xFF3E2A1E),
+                                tint = DarkBrown,
                                 modifier = Modifier.size(18.dp)
                             )
 
@@ -345,7 +347,7 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                 fontFamily = PlusJakartaSansFontFamily,
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 15.sp,
-                                color = Color(0xFF3E2A1E)
+                                color = DarkBrown
                             )
                         }
                     }
@@ -382,6 +384,71 @@ fun DetalleOutfitScreen(modifier: Modifier = Modifier, outfit: OutfitItem = samp
                                 fontSize = 15.sp,
                                 color = Color(0xFFC0392B)
                             )
+                        }
+                    }
+                } else {
+                    // Outfit ajeno: Quitar estadísticas y mostrar Link de Compra
+                    Text(
+                        text = "Enlace de Compra",
+                        fontFamily = PlusJakartaSansFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = DarkBrown
+                    )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    val linkToDisplay = outfit.purchaseLink ?: "https://www.tienda.com/outfit"
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(14.dp),
+                        color = FieldBackground,
+                        border = BorderStroke(1.5.dp, LightBrownBorder)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Tienda / Enlace original",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp,
+                                    color = MediumBrown
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = linkToDisplay,
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 14.sp,
+                                    color = Color(0xFF1976D2),
+                                    maxLines = 1
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Button(
+                                onClick = { },
+                                shape = RoundedCornerShape(10.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = DarkBrown,
+                                    contentColor = BackgroundCream
+                                )
+                            ) {
+                                Text(
+                                    text = "Ir a Tienda",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 12.sp,
+                                    color = BackgroundCream
+                                )
+                            }
                         }
                     }
                 }

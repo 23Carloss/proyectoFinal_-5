@@ -11,5 +11,6 @@ data class ClothingItem(
     val tags: List<String>,
     val dotColor: Color,
     val totalUses: Int,
-    val avgUsesPerMonth: String
+    val avgUsesPerMonth: String,
+    val purchaseLink: String? = null
 )

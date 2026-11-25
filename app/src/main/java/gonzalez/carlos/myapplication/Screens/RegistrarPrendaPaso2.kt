@@ -1,13 +1,7 @@
 package gonzalez.carlos.myapplication.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -18,20 +12,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import gonzalez.carlos.myapplication.R
 import gonzalez.carlos.myapplication.component.BotonesNavegacion
 import gonzalez.carlos.myapplication.component.CampoTagsPrenda
 import gonzalez.carlos.myapplication.component.GrupoOpcionesPrenda
 import gonzalez.carlos.myapplication.component.IndicadorProgresoPrenda
-import gonzalez.carlos.myapplication.ui.theme.PlusJakartaSansFontFamily
+import gonzalez.carlos.myapplication.ui.theme.*
 
-//NavigateToX
 @Composable
 fun RegistrarPrendaPaso2(
     onAtrasClick: () -> Unit = {},
@@ -47,9 +38,10 @@ fun RegistrarPrendaPaso2(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.modoClaroBackground))
+            .background(BackgroundCream)
     ) {
         IndicadorProgresoPrenda(pasoActual = 2)
+
         Column(
             modifier = Modifier
                 .weight(1f)
@@ -59,33 +51,36 @@ fun RegistrarPrendaPaso2(
         ) {
             Text(
                 text = "Registrar Prenda",
-                color = colorResource(id = R.color.fontColor),
-                fontSize = 25.sp,
+                color = DarkBrown,
+                fontSize = 26.sp,
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
+
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
                 text = "Dale sus detalles",
-                color = colorResource(id = R.color.fontColor),
-                fontSize = 25.sp,
+                color = DarkBrown,
+                fontSize = 22.sp,
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(2.dp))
+
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = "Así será más fácil encontrarla y combinarla.",
-                color = colorResource(id = R.color.fontColor),
-                fontSize = 12.sp,
+                color = MediumBrown,
+                fontSize = 14.sp,
                 fontFamily = PlusJakartaSansFontFamily,
-                fontWeight = FontWeight.Normal,
+                fontWeight = FontWeight.Medium,
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(25.dp))
+
+            Spacer(modifier = Modifier.height(24.dp))
 
             GrupoOpcionesPrenda(
                 titulo = "¿Es estampada?",
@@ -93,6 +88,7 @@ fun RegistrarPrendaPaso2(
                 seleccionadas = listOf(if (estampada) "Sí" else "No"),
                 onOpcionSeleccionada = { estampada = it == "Sí" }
             )
+
             Spacer(modifier = Modifier.height(20.dp))
 
             CampoTagsPrenda(
@@ -112,7 +108,8 @@ fun RegistrarPrendaPaso2(
                     tagSeleccionado = if (tagSeleccionado == tag) null else tag
                 }
             )
-            Spacer(modifier = Modifier.height(14.dp))
+
+            Spacer(modifier = Modifier.height(18.dp))
 
             GrupoOpcionesPrenda(
                 titulo = "Temporada",
@@ -120,7 +117,8 @@ fun RegistrarPrendaPaso2(
                 seleccionadas = listOf(temporada),
                 onOpcionSeleccionada = { temporada = it }
             )
-            Spacer(modifier = Modifier.height(14.dp))
+
+            Spacer(modifier = Modifier.height(18.dp))
 
             GrupoOpcionesPrenda(
                 titulo = "Formalidad",
@@ -128,19 +126,17 @@ fun RegistrarPrendaPaso2(
                 seleccionadas = listOf(formalidad),
                 onOpcionSeleccionada = { formalidad = it }
             )
-        }
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-        ) {
+            Spacer(modifier = Modifier.height(24.dp))
+
             BotonesNavegacion(
                 onAtrasClick = onAtrasClick,
                 onContinuarClick = onContinuarClick
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
-        Spacer(modifier = Modifier.height(8.dp))
+
         AppBottomNavigation()
     }
 }
@@ -148,5 +144,7 @@ fun RegistrarPrendaPaso2(
 @Preview(showBackground = true)
 @Composable
 fun PreviewRegistrarPrendaPaso2() {
-    RegistrarPrendaPaso2()
+    MyApplicationTheme {
+        RegistrarPrendaPaso2()
+    }
 }

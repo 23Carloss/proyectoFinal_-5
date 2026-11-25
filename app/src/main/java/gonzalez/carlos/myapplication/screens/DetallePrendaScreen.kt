@@ -75,8 +75,9 @@ fun DetallePrendaScreen(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(22.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFF3E2A1E)),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    border = BorderStroke(1.5.dp, LightBrownBorder),
+                    colors = CardDefaults.cardColors(containerColor = FieldBackground),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
                         Text(
@@ -84,7 +85,7 @@ fun DetallePrendaScreen(
                             fontFamily = PlusJakartaSansFontFamily,
                             fontWeight = FontWeight.Bold,
                             fontSize = 11.sp,
-                            color = Color(0xFFC87A4B)
+                            color = MediumBrown
                         )
 
                         Spacer(modifier = Modifier.height(10.dp))
@@ -94,14 +95,13 @@ fun DetallePrendaScreen(
                                 .fillMaxWidth()
                                 .height(210.dp)
                                 .clip(RoundedCornerShape(14.dp))
-                                .background(Color(0xFF2B1D15)),
+                                .background(BackgroundCream),
                             contentAlignment = Alignment.Center
                         ) {
-                            // Template para imagen de la prenda
                             Icon(
                                 imageVector = Icons.Outlined.Checkroom,
                                 contentDescription = null,
-                                tint = Color.White.copy(alpha = 0.15f),
+                                tint = IconColor.copy(alpha = 0.4f),
                                 modifier = Modifier.size(80.dp)
                             )
                         }
@@ -119,7 +119,7 @@ fun DetallePrendaScreen(
                                     fontFamily = PlusJakartaSansFontFamily,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp,
-                                    color = Color.White
+                                    color = DarkBrown
                                 )
 
                                 Spacer(modifier = Modifier.height(2.dp))
@@ -129,7 +129,7 @@ fun DetallePrendaScreen(
                                     fontFamily = PlusJakartaSansFontFamily,
                                     fontWeight = FontWeight.Medium,
                                     fontSize = 13.sp,
-                                    color = Color.White.copy(alpha = 0.7f)
+                                    color = MediumBrown
                                 )
                             }
 
@@ -144,6 +144,73 @@ fun DetallePrendaScreen(
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
+
+                if (!item.purchaseLink.isNullOrBlank()) {
+                    Text(
+                        text = "Enlace de Compra",
+                        fontFamily = PlusJakartaSansFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = DarkBrown
+                    )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(14.dp),
+                        color = FieldBackground,
+                        border = BorderStroke(1.5.dp, LightBrownBorder)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Tienda online",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp,
+                                    color = MediumBrown
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = item.purchaseLink,
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 14.sp,
+                                    color = Color(0xFF1976D2),
+                                    maxLines = 1
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Button(
+                                onClick = { },
+                                shape = RoundedCornerShape(10.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = DarkBrown,
+                                    contentColor = BackgroundCream
+                                )
+                            ) {
+                                Text(
+                                    text = "Ir a Tienda",
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontWeight = FontWeight.SemiBold,
+                                    fontSize = 12.sp,
+                                    color = BackgroundCream
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+                }
 
                 Text(
                     text = "Historial de Uso",
@@ -182,7 +249,7 @@ fun DetallePrendaScreen(
                                 fontFamily = PlusJakartaSansFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 38.sp,
-                                color = Color(0xFF3E2A1E),
+                                color = DarkBrown,
                                 modifier = Modifier.align(Alignment.CenterHorizontally)
                             )
 
@@ -220,7 +287,7 @@ fun DetallePrendaScreen(
                                 fontFamily = PlusJakartaSansFontFamily,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 38.sp,
-                                color = Color(0xFF3E2A1E),
+                                color = DarkBrown,
                                 modifier = Modifier.align(Alignment.CenterHorizontally)
                             )
 
@@ -252,7 +319,7 @@ fun DetallePrendaScreen(
                         Icon(
                             imageVector = Icons.Outlined.Edit,
                             contentDescription = "Editar Prenda",
-                            tint = Color(0xFF3E2A1E),
+                            tint = DarkBrown,
                             modifier = Modifier.size(18.dp)
                         )
 
@@ -263,7 +330,7 @@ fun DetallePrendaScreen(
                             fontFamily = PlusJakartaSansFontFamily,
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 15.sp,
-                            color = Color(0xFF3E2A1E)
+                            color = DarkBrown
                         )
                     }
                 }

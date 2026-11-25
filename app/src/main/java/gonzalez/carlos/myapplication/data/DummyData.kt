@@ -12,7 +12,8 @@ val sampleClothingItems = listOf(
         tags = listOf("Formal", "Otoño"),
         dotColor = Color(0xFFE05342),
         totalUses = 10,
-        avgUsesPerMonth = "3.5"
+        avgUsesPerMonth = "3.5",
+        purchaseLink = "https://www.zara.com"
     ),
     ClothingItem(
         id = "2",
@@ -23,7 +24,8 @@ val sampleClothingItems = listOf(
         tags = listOf("Básico", "Casual"),
         dotColor = Color(0xFFC87A4B),
         totalUses = 8,
-        avgUsesPerMonth = "2.8"
+        avgUsesPerMonth = "2.8",
+        purchaseLink = "https://shop.mango.com"
     ),
     ClothingItem(
         id = "3",
@@ -34,7 +36,8 @@ val sampleClothingItems = listOf(
         tags = listOf("Casual", "Verano"),
         dotColor = Color(0xFFC9936B),
         totalUses = 15,
-        avgUsesPerMonth = "4.2"
+        avgUsesPerMonth = "4.2",
+        purchaseLink = "https://www.levi.com.mx"
     ),
     ClothingItem(
         id = "4",
@@ -117,7 +120,7 @@ val sampleOutfitItems = listOf(
     OutfitItem(
         id = "3",
         title = "Domingo relajado",
-        category = "FINALES",
+        category = "FIN DE SEMANA",
         itemsCountText = "3 prendas",
         tags = listOf("Casual", "Verano"),
         dotColor = Color(0xFFC9936B),
@@ -143,7 +146,8 @@ val sampleOutfitItems = listOf(
         dotColor = Color(0xFFE05342),
         isFavorite = true,
         isMine = false,
-        author = "@Elena_Style"
+        author = "@Elena_Style",
+        purchaseLink = "https://www.farfetch.com"
     ),
     OutfitItem(
         id = "6",
@@ -154,6 +158,7 @@ val sampleOutfitItems = listOf(
         dotColor = Color(0xFFC87A4B),
         isFavorite = false,
         isMine = false,
-        author = "@Carlos_Fashion"
+        author = "@Carlos_Fashion",
+        purchaseLink = "https://www.palaciodehierro.com"
     )
 )

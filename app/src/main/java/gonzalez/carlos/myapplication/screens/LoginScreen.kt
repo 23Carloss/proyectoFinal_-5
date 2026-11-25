@@ -92,7 +92,7 @@ fun LoginScreen(modifier: Modifier = Modifier, onNavigateToRegister: () -> Unit 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Bienvenido!",
+                text = "¡Bienvenido!",
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
@@ -138,7 +138,7 @@ fun LoginScreen(modifier: Modifier = Modifier, onNavigateToRegister: () -> Unit 
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = DarkBrown,
-                    contentColor = Color.White
+                    contentColor = BackgroundCream
                 ),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
             ) {
@@ -147,7 +147,7 @@ fun LoginScreen(modifier: Modifier = Modifier, onNavigateToRegister: () -> Unit 
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp,
-                    color = Color.White
+                    color = BackgroundCream
                 )
             }
 
@@ -200,7 +200,7 @@ fun LoginScreen(modifier: Modifier = Modifier, onNavigateToRegister: () -> Unit 
                     color = DarkBrown
                 )
                 Text(
-                    text = "Registrate",
+                    text = "Regístrate",
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
@@ -212,7 +212,7 @@ fun LoginScreen(modifier: Modifier = Modifier, onNavigateToRegister: () -> Unit 
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "Olvide mi contraseña",
+                text = "Olvidé mi contraseña",
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 14.sp,

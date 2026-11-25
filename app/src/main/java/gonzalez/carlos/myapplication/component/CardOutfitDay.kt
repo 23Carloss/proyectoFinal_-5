@@ -7,12 +7,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import gonzalez.carlos.myapplication.ui.theme.DarkBrown
+import gonzalez.carlos.myapplication.ui.theme.FieldBackground
 
 @Composable
 fun CardOutfitDay(){
     Card(modifier=Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
-        colors= CardDefaults.cardColors(containerColor = DarkBrown)
+        colors= CardDefaults.cardColors(containerColor = FieldBackground)
     ) { }
 }

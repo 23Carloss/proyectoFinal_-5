@@ -364,9 +364,9 @@ fun OutfitCard(
             .height(230.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(18.dp),
-        border = if (selectionMode && isSelected) BorderStroke(2.dp, Color(0xFFC87A4B)) else null,
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF3E2A1E)),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        border = BorderStroke(1.5.dp, if (selectionMode && isSelected) DarkBrown else LightBrownBorder),
+        colors = CardDefaults.cardColors(containerColor = FieldBackground),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier
@@ -379,13 +379,13 @@ fun OutfitCard(
                     .fillMaxWidth()
                     .height(110.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(Color(0xFF2B1D15)),
+                    .background(BackgroundCream),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Checkroom,
                     contentDescription = null,
-                    tint = Color.White.copy(alpha = 0.15f),
+                    tint = IconColor.copy(alpha = 0.4f),
                     modifier = Modifier.size(52.dp)
                 )
             }
@@ -401,7 +401,7 @@ fun OutfitCard(
                         fontFamily = PlusJakartaSansFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 10.sp,
-                        color = Color(0xFFC87A4B)
+                        color = MediumBrown
                     )
 
                     Box(
@@ -419,7 +419,7 @@ fun OutfitCard(
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
-                    color = Color.White,
+                    color = DarkBrown,
                     maxLines = 1
                 )
 
@@ -428,7 +428,7 @@ fun OutfitCard(
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Normal,
                     fontSize = 11.sp,
-                    color = Color.White.copy(alpha = 0.7f),
+                    color = MediumBrown,
                     maxLines = 1
                 )
 
@@ -442,17 +442,18 @@ fun OutfitCard(
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
-                        item.tags.forEach { tag ->
+                        item.tags.take(2).forEach { tag ->
                             Surface(
                                 shape = RoundedCornerShape(10.dp),
-                                color = Color(0xFF503828)
+                                color = BackgroundCream,
+                                border = BorderStroke(1.dp, LightBrownBorder.copy(alpha = 0.6f))
                             ) {
                                 Text(
                                     text = tag,
                                     fontFamily = PlusJakartaSansFontFamily,
                                     fontWeight = FontWeight.Medium,
                                     fontSize = 10.sp,
-                                    color = Color.White.copy(alpha = 0.9f),
+                                    color = DarkBrown,
                                     modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                                 )
                             }
@@ -462,7 +463,7 @@ fun OutfitCard(
                     if (selectionMode) {
                         Text(
                             text = if (isSelected) "✓" else "",
-                            color = Color.White,
+                            color = DarkBrown,
                             fontFamily = PlusJakartaSansFontFamily,
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
@@ -471,7 +472,7 @@ fun OutfitCard(
                         Icon(
                             imageVector = if (item.isFavorite) Icons.Default.Star else Icons.Outlined.StarOutline,
                             contentDescription = "Favorito",
-                            tint = if (item.isFavorite) Color(0xFFF1C40F) else Color(0xFFC9936B),
+                            tint = if (item.isFavorite) Color(0xFFF1C40F) else MediumBrown,
                             modifier = Modifier
                                 .size(22.dp)
                                 .clickable { onFavoriteToggle() }

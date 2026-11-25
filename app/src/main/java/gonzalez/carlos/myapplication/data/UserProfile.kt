@@ -7,7 +7,8 @@ data class UserProfile(
     val email: String,
     val phone: String,
     val pfp: Int = R.drawable.profilepfp,
-    val isBiometricsEnabled: Boolean = true
+    val isBiometricsEnabled: Boolean = true,
+    val streakDays: Int = 5
 )
 
 val sampleUserProfile = UserProfile(
@@ -15,5 +16,6 @@ val sampleUserProfile = UserProfile(
     email = "luis.perez08@gmail.com",
     phone = "+52 6442819732",
     pfp = R.drawable.profilepfp,
-    isBiometricsEnabled = true
+    isBiometricsEnabled = true,
+    streakDays = 5
 )

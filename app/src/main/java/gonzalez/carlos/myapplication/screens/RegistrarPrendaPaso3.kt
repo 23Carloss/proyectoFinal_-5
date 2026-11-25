@@ -1,44 +1,30 @@
 package gonzalez.carlos.myapplication.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import gonzalez.carlos.myapplication.R
 import gonzalez.carlos.myapplication.component.BotonesNavegacion
 import gonzalez.carlos.myapplication.component.IndicadorProgresoPrenda
-import gonzalez.carlos.myapplication.ui.theme.PlusJakartaSansFontFamily
+import gonzalez.carlos.myapplication.ui.theme.*
 
 @Composable
 fun RegistrarPrendaPaso3(
@@ -48,144 +34,179 @@ fun RegistrarPrendaPaso3(
     var marca by rememberSaveable { mutableStateOf("") }
     var talla by rememberSaveable { mutableStateOf("") }
     var mostrarTallas by remember { mutableStateOf(false) }
-    val colorTexto = colorResource(id = R.color.fontColor)
-    val colorBorde = colorResource(id = R.color.Stroke)
+
     val formaCampo = RoundedCornerShape(12.dp)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.modoClaroBackground))
+            .background(BackgroundCream)
     ) {
         IndicadorProgresoPrenda(pasoActual = 3)
+
         Column(
             modifier = Modifier
                 .weight(1f)
-                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp, vertical = 18.dp)
         ) {
             Text(
                 text = "Registrar Prenda",
                 modifier = Modifier.fillMaxWidth(),
-                color = colorTexto,
-                fontSize = 25.sp,
+                color = DarkBrown,
+                fontSize = 26.sp,
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(20.dp))
+
+            Spacer(modifier = Modifier.height(18.dp))
 
             Text(
                 text = "Unos detalles más",
-                color = colorTexto,
-                fontSize = 25.sp,
+                color = DarkBrown,
+                fontSize = 22.sp,
                 fontFamily = PlusJakartaSansFontFamily,
                 fontWeight = FontWeight.Bold
             )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = "La marca y la talla son opcionales.",
-                color = colorResource(id = R.color.ButtonContinueBackground),
-                fontSize = 12.sp,
-                fontFamily = PlusJakartaSansFontFamily
+                color = MediumBrown,
+                fontSize = 14.sp,
+                fontFamily = PlusJakartaSansFontFamily,
+                fontWeight = FontWeight.Medium
             )
-            Spacer(modifier = Modifier.height(14.dp))
+
+            Spacer(modifier = Modifier.height(20.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "Tienda o marca",
-                    color = colorTexto,
-                    fontSize = 12.sp,
+                    color = DarkBrown,
+                    fontSize = 15.sp,
+                    fontFamily = PlusJakartaSansFontFamily,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "  (Opcional)",
+                    color = MediumBrown,
+                    fontSize = 13.sp,
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Medium
                 )
-                Text(
-                    text = "  Opcional",
-                    color = colorResource(id = R.color.ButtonContinueBackground),
-                    fontSize = 11.sp,
-                    fontFamily = PlusJakartaSansFontFamily
-                )
             }
+
             Spacer(modifier = Modifier.height(6.dp))
-            BasicTextField(
-                value = marca,
-                onValueChange = { marca = it },
+
+            Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(46.dp)
-                    .clip(formaCampo)
-                    .background(colorResource(id = R.color.AddImageBackground))
-                    .border(2.dp, colorBorde, formaCampo)
-                    .padding(horizontal = 14.dp),
-                singleLine = true,
-                textStyle = TextStyle(
-                    color = colorTexto,
-                    fontSize = 13.sp,
-                    fontFamily = PlusJakartaSansFontFamily
-                ),
-                decorationBox = { innerTextField ->
-                    Box(contentAlignment = Alignment.CenterStart) {
-                        if (marca.isEmpty()) {
-                            Text(
-                                text = "Ej. Zara",
-                                color = colorResource(id = R.color.ButtonContinueBackground),
-                                fontSize = 13.sp,
-                                fontFamily = PlusJakartaSansFontFamily
-                            )
-                        }
-                        innerTextField()
+                    .height(52.dp),
+                shape = formaCampo,
+                color = FieldBackground,
+                border = BorderStroke(1.5.dp, LightBrownBorder)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 14.dp),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    if (marca.isEmpty()) {
+                        Text(
+                            text = "Ej. Zara",
+                            color = TextPlaceholder,
+                            fontSize = 14.sp,
+                            fontFamily = PlusJakartaSansFontFamily
+                        )
                     }
+                    BasicTextField(
+                        value = marca,
+                        onValueChange = { marca = it },
+                        singleLine = true,
+                        textStyle = TextStyle(
+                            color = DarkBrown,
+                            fontSize = 14.sp,
+                            fontFamily = PlusJakartaSansFontFamily,
+                            fontWeight = FontWeight.Medium
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
-            )
-            Spacer(modifier = Modifier.height(14.dp))
+            }
+
+            Spacer(modifier = Modifier.height(18.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "Talla",
-                    color = colorTexto,
-                    fontSize = 12.sp,
+                    color = DarkBrown,
+                    fontSize = 15.sp,
+                    fontFamily = PlusJakartaSansFontFamily,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "  (Opcional)",
+                    color = MediumBrown,
+                    fontSize = 13.sp,
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Medium
                 )
-                Text(
-                    text = "  Opcional",
-                    color = colorResource(id = R.color.ButtonContinueBackground),
-                    fontSize = 11.sp,
-                    fontFamily = PlusJakartaSansFontFamily
-                )
             }
+
             Spacer(modifier = Modifier.height(6.dp))
+
             Box {
-                Row(
+                Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(46.dp)
-                        .clip(formaCampo)
-                        .background(colorResource(id = R.color.AddImageBackground))
-                        .border(2.dp, colorBorde, formaCampo)
-                        .clickable { mostrarTallas = true }
-                        .padding(horizontal = 14.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                        .height(52.dp)
+                        .clickable { mostrarTallas = true },
+                    shape = formaCampo,
+                    color = FieldBackground,
+                    border = BorderStroke(1.5.dp, LightBrownBorder)
                 ) {
-                    Text(
-                        text = talla.ifEmpty { "Selecciona una talla" },
-                        modifier = Modifier.weight(1f),
-                        color = colorResource(id = R.color.ButtonContinueBackground),
-                        fontSize = 13.sp,
-                        fontFamily = PlusJakartaSansFontFamily
-                    )
-                    Text(
-                        text = "⌄",
-                        color = colorResource(id = R.color.ButtonContinueBackground),
-                        fontSize = 16.sp
-                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 14.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = talla.ifEmpty { "Selecciona una talla" },
+                            modifier = Modifier.weight(1f),
+                            color = if (talla.isEmpty()) TextPlaceholder else DarkBrown,
+                            fontSize = 14.sp,
+                            fontFamily = PlusJakartaSansFontFamily,
+                            fontWeight = FontWeight.Medium
+                        )
+                        Text(
+                            text = "⌄",
+                            color = DarkBrown,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
+
                 DropdownMenu(
                     expanded = mostrarTallas,
-                    onDismissRequest = { mostrarTallas = false }
+                    onDismissRequest = { mostrarTallas = false },
+                    modifier = Modifier.background(BackgroundCream)
                 ) {
                     listOf("XS", "S", "M", "L", "XL", "XXL", "Unitalla").forEach { opcion ->
                         DropdownMenuItem(
-                            text = { Text(opcion, fontFamily = PlusJakartaSansFontFamily) },
+                            text = {
+                                Text(
+                                    text = opcion,
+                                    fontFamily = PlusJakartaSansFontFamily,
+                                    fontSize = 14.sp,
+                                    color = DarkBrown
+                                )
+                            },
                             onClick = {
                                 talla = opcion
                                 mostrarTallas = false
@@ -194,47 +215,58 @@ fun RegistrarPrendaPaso3(
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(30.dp))
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(11.dp))
-                    .background(colorResource(id = R.color.fotoPrendaBackground))
-                    .border(1.5.dp, colorBorde, RoundedCornerShape(11.dp))
-                    .padding(horizontal = 12.dp, vertical = 10.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Spacer(modifier = Modifier.height(28.dp))
+
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                color = FieldBackground,
+                border = BorderStroke(1.5.dp, LightBrownBorder)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Check,
-                    contentDescription = null,
-                    tint = colorResource(id = R.color.ButtonContinueBackground)
-                )
-                Text(
-                    text = "Podrás editar estos datos cuando quieras.",
-                    modifier = Modifier.padding(start = 8.dp),
-                    color = colorTexto,
-                    fontSize = 11.sp,
-                    fontFamily = PlusJakartaSansFontFamily
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = null,
+                        tint = Color(0xFF2E7D32),
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = "Podrás editar estos datos cuando quieras.",
+                        color = DarkBrown,
+                        fontSize = 13.sp,
+                        fontFamily = PlusJakartaSansFontFamily,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
-        }
 
-        Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+            Spacer(modifier = Modifier.height(24.dp))
+
             BotonesNavegacion(
                 onAtrasClick = onAtrasClick,
                 onContinuarClick = onContinuarClick,
                 textoAtras = "Atrás",
                 textoContinuar = "Guardar prenda"
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
-        Spacer(modifier = Modifier.height(8.dp))
+
         AppBottomNavigation()
     }
 }
 
-@Preview(showBackground = true, widthDp = 390, heightDp = 844)
+@Preview(showBackground = true)
 @Composable
 fun PreviewRegistrarPrendaPaso3() {
-    RegistrarPrendaPaso3()
+    MyApplicationTheme {
+        RegistrarPrendaPaso3()
+    }
 }

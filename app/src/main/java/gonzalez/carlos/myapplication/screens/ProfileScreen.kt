@@ -137,6 +137,29 @@ fun ProfileScreen(
 
                 Spacer(modifier = Modifier.height(6.dp))
 
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = Color(0xFFFFF3E0),
+                    border = BorderStroke(1.dp, Color(0xFFFFB74D))
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("🔥", fontSize = 14.sp)
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = "Racha de outfits: ${userProfile.streakDays} días",
+                            fontFamily = PlusJakartaSansFontFamily,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 12.sp,
+                            color = Color(0xFFE65100)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
                 Text(
                     text = "Editar Foto",
                     fontFamily = PlusJakartaSansFontFamily,
@@ -203,7 +226,8 @@ fun ProfileScreen(
                             ProfileEditField(
                                 label = "Teléfono",
                                 value = tempPhone,
-                                onValueChange = { tempPhone = it }
+                                onValueChange = { tempPhone = it },
+                                keyboardType = androidx.compose.ui.text.input.KeyboardType.Phone
                             )
 
                             Spacer(modifier = Modifier.height(12.dp))
@@ -445,6 +469,7 @@ fun ProfileEditField(
     value: String,
     onValueChange: (String) -> Unit = {},
     readOnly: Boolean = false,
+    keyboardType: androidx.compose.ui.text.input.KeyboardType = androidx.compose.ui.text.input.KeyboardType.Text,
     trailingIcon: @Composable (() -> Unit)? = null
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -461,8 +486,8 @@ fun ProfileEditField(
                 .fillMaxWidth()
                 .height(44.dp),
             shape = RoundedCornerShape(10.dp),
-            color = if (readOnly) Color(0xFFEDE5DA) else FieldBackground,
-            border = BorderStroke(1.dp, if (readOnly) Color(0xFFD8C8B8) else LightBrownBorder)
+            color = if (readOnly) FieldBackground.copy(alpha = 0.6f) else FieldBackground,
+            border = BorderStroke(1.dp, LightBrownBorder)
         ) {
             Row(
                 modifier = Modifier
@@ -482,11 +507,12 @@ fun ProfileEditField(
                         singleLine = true,
                         readOnly = readOnly,
                         enabled = !readOnly,
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(keyboardType = keyboardType),
                         textStyle = TextStyle(
                             fontFamily = PlusJakartaSansFontFamily,
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 14.sp,
-                            color = if (readOnly) DarkBrown.copy(alpha = 0.6f) else DarkBrown
+                            color = if (readOnly) MediumBrown else DarkBrown
                         ),
                         modifier = Modifier.fillMaxWidth()
                     )

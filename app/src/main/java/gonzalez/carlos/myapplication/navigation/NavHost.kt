@@ -43,6 +43,9 @@ fun AppNavigation(
                 onNavigateToRegister = {
                     navController.navigate(RegisterRoute)
                 },
+                onForgotPassword = {
+                    navController.navigate(ForgotPasswordRoute)
+                },
                 onLoginSuccess = {
                     navController.navigate(InicioRoute) {
                         popUpTo<LoginRoute> { inclusive = true }
@@ -53,6 +56,12 @@ fun AppNavigation(
                         popUpTo<LoginRoute> { inclusive = true }
                     }
                 }
+            )
+        }
+
+        composable<ForgotPasswordRoute> {
+            ForgotPasswordScreen(
+                onBackToLogin = { navController.popBackStack() }
             )
         }
 
@@ -165,7 +174,7 @@ fun AppNavigation(
                     navigateToTab(1)
                 },
                 onAddClick = {
-                    navController.navigate(RegistrarPrendaRoute)
+                    navController.navigate(OutfitDiarioPaso1Route)
                 },
                 onDailyOutfitClick = { navController.navigate(OutfitDiarioPaso1Route) },
                 onProfileClick = {

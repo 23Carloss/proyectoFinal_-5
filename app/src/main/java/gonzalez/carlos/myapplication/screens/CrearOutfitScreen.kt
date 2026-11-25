@@ -40,6 +40,8 @@ fun CrearOutfitScreen(
     onNavTabSelected: (Int) -> Unit = {}
 ) {
     var outfitName by remember { mutableStateOf("") }
+    var outfitColor by remember { mutableStateOf("Camel") }
+    var purchaseLink by remember { mutableStateOf("") }
     var tagsInput by remember { mutableStateOf("") }
     var isPrivate by remember { mutableStateOf(true) } // true: Privado, false: Público
     var saveToFavorites by remember { mutableStateOf(false) }
@@ -149,6 +151,13 @@ fun CrearOutfitScreen(
                         )
                     }
                 }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                gonzalez.carlos.myapplication.component.SelectorColores(
+                    colorSeleccionado = outfitColor,
+                    onColorSeleccionado = { outfitColor = it }
+                )
 
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -274,20 +283,20 @@ fun CrearOutfitScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
                     text = "Etiquetas",
                     fontFamily = PlusJakartaSansFontFamily,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
+                    fontSize = 15.sp,
                     color = DarkBrown
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(48.dp),
+                        .height(52.dp),
                     shape = RoundedCornerShape(12.dp),
                     color = FieldBackground,
                     border = BorderStroke(1.5.dp, LightBrownBorder)
@@ -309,6 +318,53 @@ fun CrearOutfitScreen(
                         BasicTextField(
                             value = tagsInput,
                             onValueChange = { tagsInput = it },
+                            singleLine = true,
+                            textStyle = TextStyle(
+                                fontFamily = PlusJakartaSansFontFamily,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 14.sp,
+                                color = DarkBrown
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Text(
+                    text = "Enlace de compra (Opcional)",
+                    fontFamily = PlusJakartaSansFontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp,
+                    color = DarkBrown
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    color = FieldBackground,
+                    border = BorderStroke(1.5.dp, LightBrownBorder)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 14.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        if (purchaseLink.isEmpty()) {
+                            Text(
+                                text = "Ej. https://www.tienda.com/outfit",
+                                fontFamily = PlusJakartaSansFontFamily,
+                                fontSize = 14.sp,
+                                color = TextPlaceholder
+                            )
+                        }
+                        BasicTextField(
+                            value = purchaseLink,
+                            onValueChange = { purchaseLink = it },
                             singleLine = true,
                             textStyle = TextStyle(
                                 fontFamily = PlusJakartaSansFontFamily,
@@ -478,12 +534,12 @@ fun CrearOutfitScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(28.dp))
 
                 Button(
                     onClick = onSaveSuccess,
                     modifier = Modifier.fillMaxWidth()
-                        .height(50.dp),
+                        .height(52.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = DarkBrown,
